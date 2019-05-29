@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Kubernetes Dashboard Plus</title>
+    <link rel="icon" href="favicon.ico">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="node_modules/materialize-css/dist/css/materialize.min.css">
+    <link rel="stylesheet" href="css/global.css">
+</head>
+
+<body>
+    <header>
+        <div class="navbar-fixed">
+            <nav class="first-nav white">
+                <div class="nav-wrapper">
+                    <a class="brand-logo">
+                        <img src="imgs/kubernetes-logo.svg" width="32" style="margin-top: 8px; margin-left: 22px;">
+                        <img src="imgs/kubernetes-logo-text.svg" width="113"
+                            style="margin-bottom: 7px; margin-left: 5px;">
+                        <img src="imgs/plus.png" width="32" style="margin-left: -8px;">
+                    </a>
+                </div>
+            </nav>
+        </div>
+        <div class="navbar-fixed" style="margin-top: -16px;">
+            <nav class="second-nav">
+                <div class="nav-wrapper">
+                    <div class="col s12">
+                        <a class="breadcrumb">
+                            <i class="material-icons waves-effect"
+                                style="margin-top: -4px; margin-left: 22px; color: white;" id="menu-trigger">menu</i>
+                            <span style="margin-left: 16px; margin-right: -8px;">Cluster</span>
+                        </a>
+                        <a class="breadcrumb">
+                            <span style="margin-left: -8px; margin-right: -8px;">Service Accounts</span>
+                        </a>
+                        <a class="breadcrumb">
+                            <span style="margin-left: -8px;" id="name"></span>
+                        </a>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <ul class="sidenav" id="menu">
+            <li class="second-sidenav">
+                <ul>
+                    <li>
+                        <a class="collapsible-header waves-effect">Cluster</a>
+                    </li>
+                    <li class="sub-header"><a class="collapsible-header waves-effect" href="clusterroles.html"
+                            style="font-weight: normal;">Cluster Roles</a></li>
+                    <div class="divider"></div>
+                    <li>
+                        <div class="row">
+                            <div class="col s12 input-field" style="margin-left: 6px;">
+                                <select id="namespace">
+                                    <optgroup label="All namespaces" id="namespace-opt-grp">
+                                    </optgroup>
+                                </select>
+                                <label>Namespace</label>
+                            </div>
+                        </div>
+                    </li>
+                    <li><a class="collapsible-header waves-effect">Cluster</a></li>
+                    <li class="sub-header active"><a class="collapsible-header waves-effect" href="roles.html"
+                            style="font-weight: normal;">Roles</a></li>
+                    <li class="sub-header"><a class="collapsible-header waves-effect" href="serviceaccounts.html"
+                            style="font-weight: normal;">Service Accounts</a></li>
+                    <div class="divider"></div>
+                    <li><a class="collapsible-header waves-effect" href="settings.html">Settings</a></li>
+                    <li><a class="collapsible-header waves-effect" href="about.html">About</a></li>
+                </ul>
+            </li>
+        </ul>
+    </header>
+    <main>
+        <div class="row">
+            <div class="col s12">
+                <div class="card">
+                    <div class="card-title-sm">Details</div>
+                    <div class="divider"></div>
+                    <div style="padding-top: 4px; padding-bottom: 4px;" id="detail"></div>
+                    <div class="right-align" style="display: none;" id="pagination">
+                        <div class="row row-sm">
+                            <div class="col s12">
+                                <ul class="pagination" id="pagination">
+                                    <li class="waves-effect" id="first-page">
+                                        <a href="#">
+                                            <i class="material-icons" style="font-size: 24px;">first_page</i>
+                                        </a>
+                                    </li>
+                                    <li class="waves-effect" id="prev-page">
+                                        <a href="#">
+                                            <i class="material-icons" style="font-size: 24px;">chevron_left</i>
+                                        </a>
+                                    </li>
+                                    <li class="waves-effect" id="next-page">
+                                        <a href="#">
+                                            <i class="material-icons" style="font-size: 24px;">chevron_right</i>
+                                        </a>
+                                    </li>
+                                    <li class="waves-effect" id="last-page">
+                                        <a href="#">
+                                            <i class="material-icons" style="font-size: 24px;">last_page</i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-title-sm">Rules</div>
+                    <div class="divider"></div>
+                    <div id="rules"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="node_modules/timeago/jquery.timeago.js"></script>
+    <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
+    <script src="js/global.js"></script>
+    <script src="js/role.js"></script>
+</body>
+
+</html>

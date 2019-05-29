@@ -1,0 +1,135 @@
+body {
+    background-color: #eeeeee;
+}
+
+/** navbar **/
+.first-nav {
+    height: 48px;
+    line-height: 48px;
+}
+
+.second-nav {
+    background-color: #326de6;
+    height: 56px;
+    line-height: 56px;
+}
+
+/** sidenav **/
+.sidenav {
+    background-color: #eeeeee;
+    width: 240px;
+    margin-top: 112px;
+    box-shadow: none !important;
+    transform: translateX(0%);
+}
+
+.sidenav-overlay {
+    /* remove default overlay */
+    background-color: transparent;
+}
+
+.second-sidenav {
+    padding-left: 8px;
+    padding-right: 8px;
+}
+
+.sub-header {
+    margin-left: 16px;
+}
+
+.select-wrapper {
+    margin-top: 16px;
+    margin-bottom: -12px;
+    margin-left: 16px;
+    margin-right: 32px;
+}
+
+/** content **/
+main {
+    margin-left: 240px;
+}
+
+.card {
+    /* resize default margin */
+    margin-top: 13px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.card-title-sm {
+    padding-top: 13px;
+    padding-bottom: 13px;
+    padding-left: 16px;
+    padding-right: 16px;
+    font-size: 20px;
+}
+
+.row {
+    /* remove default margin */
+    margin: 0px;
+}
+
+.row-sm {
+    padding-top: 8px;
+    padding-bottom: 8px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.row-xs {
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 16px;
+    padding-right: 16px;
+}
+
+.content-header {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.54);
+}
+
+.content-body {
+    font-size: 14px;
+}
+
+.content-title {
+    font-weight: bold;
+}
+
+.content-grey {
+    background-color: #eeeeee;
+    padding-top: 4px;
+    padding-bottom: 4px;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 8px;
+    margin-right: 8px;
+}
+
+.pagination {
+    /* remove default margin */
+    margin: 0px;
+}
+
+input[type=range]::-webkit-slider-thumb {
+    background-color: #2196f3;
+}
+
+input[type=range]::-moz-range-thumb {
+    background-color: #2196f3;
+}
+
+input[type=range]::-ms-thumb {
+    background-color: #2196f3;
+}
+
+input[type=range]+.thumb {
+    background-color: #2196f3;
+}
+
+input[type=range]+.thumb.active .value {
+    font-size: 12px;
+    font-weight: bold;
+    text-align: center;
+}

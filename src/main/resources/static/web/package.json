@@ -1,0 +1,13 @@
+{
+  "name": "kubernetes-dashboard-plus",
+  "version": "1.0.0",
+  "description": "An extension of kubernetes dashboard",
+  "main": "index.js",
+  "author": "sanjiheart",
+  "license": "MIT",
+  "dependencies": {
+    "jquery": "^3.4.1",
+    "materialize-css": "^1.0.0",
+    "timeago": "^1.6.7"
+  }
+}
