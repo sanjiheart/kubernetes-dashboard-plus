@@ -15,6 +15,15 @@ $(function () {
         $('title').text(prefix + title.replace('<subtitle>', subtitle));
     }
 
+    window.showZeroState = function (resourceType) {
+        $('#resources').append(
+            '<div class="row row-sm"><div class="col s12">'
+            + '<div class="zerostate-title center-align">There is nothing to display here</div>'
+            + '<div class="zerostate-subtitle center-align">There are no ' + resourceType + ' to display.</div>'
+            + '</div></div>'
+        );
+    }
+
     $('#menu-trigger').click(function () {
         if ($('#menu').css('transform') === 'matrix(1, 0, 0, 1, 0, 0)') {
             $('#menu').css('transform', 'translateX(-105%)');

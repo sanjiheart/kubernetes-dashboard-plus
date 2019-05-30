@@ -20,10 +20,13 @@ public class KubeConfig {
   @Value("${kube.token}")
   private String token;
 
+  @Value("${kube.validateSSL}")
+  private boolean validateSSL;
+
   @PostConstruct
   public void init() {
     //  ApiClient client = Config.defaultClient();
-    ApiClient client = Config.fromToken(url, token);
+    ApiClient client = Config.fromToken(url, token, validateSSL);
     io.kubernetes.client.Configuration.setDefaultApiClient(client);
   }
 

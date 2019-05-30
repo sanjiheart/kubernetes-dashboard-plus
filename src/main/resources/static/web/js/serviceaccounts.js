@@ -60,6 +60,8 @@ $(function () {
                     $('#pagination').show();
                     initPagination(true, saResList.total, page);
                 }
+            } else {
+                showZeroState('Service Accounts');
             }
         });
     }

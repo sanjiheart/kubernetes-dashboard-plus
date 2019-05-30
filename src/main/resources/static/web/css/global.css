@@ -107,6 +107,17 @@ main {
     margin-right: 8px;
 }
 
+.zerostate-title {
+    font-size: 24px;
+    color: #888888;
+}
+
+.zerostate-subtitle {
+    font-size: 14px;
+    color: #aaaaaa;
+    margin-bottom: 8px;
+}
+
 .pagination {
     /* remove default margin */
     margin: 0px;

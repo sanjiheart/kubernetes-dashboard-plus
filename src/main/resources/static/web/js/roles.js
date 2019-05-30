@@ -60,6 +60,8 @@ $(function () {
                     $('#pagination').show();
                     initPagination(true, rResList.total, page);
                 }
+            } else {
+                showZeroState('Roles');
             }
         });
     }

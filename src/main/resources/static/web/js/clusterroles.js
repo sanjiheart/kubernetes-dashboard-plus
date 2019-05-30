@@ -1,5 +1,5 @@
 $(function () {
-    
+
     setTitle('Cluster Roles');
 
     $('#namespace').change(function () {
@@ -57,6 +57,8 @@ $(function () {
                     $('#pagination').show();
                     initPagination(false, crResList.total, page);
                 }
+            } else {
+                showZeroState('Cluster Roles');
             }
         });
     }
