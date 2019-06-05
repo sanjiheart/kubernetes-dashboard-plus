@@ -15,13 +15,10 @@
 <body>
     <header>
         <div class="navbar-fixed">
-            <nav class="first-nav white">
+            <nav class="first-nav white" id="first-nav">
                 <div class="nav-wrapper">
                     <a class="brand-logo">
-                        <img src="imgs/kubernetes-logo.svg" width="32" style="margin-top: 8px; margin-left: 22px;">
-                        <img src="imgs/kubernetes-logo-text.svg" width="113"
-                            style="margin-bottom: 7px; margin-left: 5px;">
-                        <img src="imgs/plus.png" width="32" style="margin-left: -8px;">
+                        <img v-for="logo in logoList" :src="logo.src" :width="logo.width" :style="logo.style">
                     </a>
                 </div>
             </nav>
@@ -85,34 +82,6 @@
                     <div class="card-title-sm">Details</div>
                     <div class="divider"></div>
                     <div style="padding-top: 4px; padding-bottom: 4px;" id="detail"></div>
-                    <div class="right-align" style="display: none;" id="pagination">
-                        <div class="row row-sm">
-                            <div class="col s12">
-                                <ul class="pagination" id="pagination">
-                                    <li class="waves-effect" id="first-page">
-                                        <a href="#">
-                                            <i class="material-icons" style="font-size: 24px;">first_page</i>
-                                        </a>
-                                    </li>
-                                    <li class="waves-effect" id="prev-page">
-                                        <a href="#">
-                                            <i class="material-icons" style="font-size: 24px;">chevron_left</i>
-                                        </a>
-                                    </li>
-                                    <li class="waves-effect" id="next-page">
-                                        <a href="#">
-                                            <i class="material-icons" style="font-size: 24px;">chevron_right</i>
-                                        </a>
-                                    </li>
-                                    <li class="waves-effect" id="last-page">
-                                        <a href="#">
-                                            <i class="material-icons" style="font-size: 24px;">last_page</i>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <div class="card">
                     <div class="card-title-sm">Rules</div>
@@ -123,6 +92,7 @@
         </div>
     </main>
 
+    <script src="node_modules/vue/dist/vue.min.js"></script>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/timeago/jquery.timeago.js"></script>
     <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>

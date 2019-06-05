@@ -15,13 +15,10 @@
 <body>
     <header>
         <div class="navbar-fixed">
-            <nav class="first-nav white">
+            <nav class="first-nav white" id="first-nav">
                 <div class="nav-wrapper">
                     <a class="brand-logo">
-                        <img src="imgs/kubernetes-logo.svg" width="32" style="margin-top: 8px; margin-left: 22px;">
-                        <img src="imgs/kubernetes-logo-text.svg" width="113"
-                            style="margin-bottom: 7px; margin-left: 5px;">
-                        <img src="imgs/plus.png" width="32" style="margin-left: -8px;">
+                        <img v-for="logo in logoList" :src="logo.src" :width="logo.width" :style="logo.style">
                     </a>
                 </div>
             </nav>
@@ -123,6 +120,7 @@
         </div>
     </main>
 
+    <script src="node_modules/vue/dist/vue.min.js"></script>
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
     <script src="node_modules/timeago/jquery.timeago.js"></script>
     <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>

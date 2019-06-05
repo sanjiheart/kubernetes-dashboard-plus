@@ -36,4 +36,27 @@ $(function () {
 
     $.timeago.settings.strings.suffixAgo = '';
 
+    new Vue({
+        el: '#first-nav',
+        data: {
+            logoList: [
+                { src: 'imgs/kubernetes-logo.svg', width: '32', style: 'margin-top: 8px; margin-left: 22px;' },
+                { src: 'imgs/kubernetes-logo-text.svg', width: '113', style: 'margin-bottom: 7px; margin-left: 13px;' },
+                { src: 'imgs/plus.png', width: '32' }
+            ]
+        }
+    });
+
+    new Vue({
+        el: '#pagination',
+        data: {
+            behaviorList: [
+                { id: 'first-page', text: 'first_page' },
+                { id: 'prev-page', text: 'chevron_left' },
+                { id: 'next-page', text: 'chevron_right' },
+                { id: 'last-page', text: 'last_page' }
+            ]
+        }
+    });
+
 });
