@@ -4,7 +4,7 @@ var title = '<subtitle> - Kubernetes Dashboard Plus';
 
 var itemsPerPage = localStorage.getItem('itemsPerPage') === null ? 10 : localStorage.getItem('itemsPerPage');
 
-var apiEndpoint = window.location.protocol + '//' + window.location.host;
+var apiEndpoint = window.location.protocol + '//' + window.location.host + '/api';
 
 $(function () {
 
@@ -14,6 +14,10 @@ $(function () {
         var prefix = localStorage.getItem('title') === null ? '' : localStorage.getItem('title') + ' - ';
         $('title').text(prefix + title.replace('<subtitle>', subtitle));
     }
+
+    $('.modal').modal({
+        opacity: 0.4
+    });
 
     window.showZeroState = function (resourceType) {
         $('#resources').append(

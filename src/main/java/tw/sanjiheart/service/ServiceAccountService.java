@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import io.kubernetes.client.ApiException;
 import io.kubernetes.client.apis.CoreV1Api;
+import io.kubernetes.client.models.V1DeleteOptions;
 import io.kubernetes.client.models.V1ServiceAccount;
 import tw.sanjiheart.model.ResourceList;
 import tw.sanjiheart.model.ServiceAccount;
@@ -48,6 +49,15 @@ public class ServiceAccountService {
   public ServiceAccount get(String namespace, String name) {
     try {
       return new ServiceAccount(api.readNamespacedServiceAccount(name, namespace, "false", null, null));
+    } catch (ApiException e) {
+      e.printStackTrace();
+      throw new HttpException(ErrorMsg.SERVICE_UNAVAILABLE, e.getMessage());
+    }
+  }
+
+  public void delete(String namespace, String name) {
+    try {
+      api.deleteNamespacedServiceAccount(name, namespace, new V1DeleteOptions(), "false", null, null, null, null);
     } catch (ApiException e) {
       e.printStackTrace();
       throw new HttpException(ErrorMsg.SERVICE_UNAVAILABLE, e.getMessage());

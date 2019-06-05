@@ -14,6 +14,10 @@ body {
     line-height: 56px;
 }
 
+.modal {
+    overflow-y: visible;
+}
+
 /** sidenav **/
 .sidenav {
     background-color: #eeeeee;
@@ -21,6 +25,7 @@ body {
     margin-top: 112px;
     box-shadow: none !important;
     transform: translateX(0%);
+    z-index: auto;
 }
 
 .sidenav-overlay {

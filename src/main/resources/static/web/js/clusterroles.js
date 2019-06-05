@@ -19,11 +19,11 @@ $(function () {
                     $('#namespace-opt-grp').append('<option>' + ns.name + '</option>');
             });
             $('select').formSelect();
-            list(1);
+            listClusterRoles(1);
         });
     }
 
-    function list(page) {
+    function listClusterRoles(page) {
         var url = apiEndpoint + '/clusterroles?itemsPerPage=' + itemsPerPage + '&page=' + page;
         $.ajax({
             url: url,
@@ -84,26 +84,26 @@ $(function () {
 
         $('#first-page').click(function () {
             if (!$(this).hasClass('disabled')) {
-                namespaced ? list($('#namespace').val(), 1) : list(1);
+                namespaced ? listClusterRoles($('#namespace').val(), 1) : listClusterRoles(1);
             }
         });
 
         $('#prev-page').click(function () {
             if (!$(this).hasClass('disabled')) {
-                namespaced ? list($('#namespace').val(), --page) : list(--page);
+                namespaced ? listClusterRoles($('#namespace').val(), --page) : listClusterRoles(--page);
             }
         });
 
         $('#next-page').click(function () {
             console.log('c');
             if (!$(this).hasClass('disabled')) {
-                namespaced ? list($('#namespace').val(), ++page) : list(++page);
+                namespaced ? listClusterRoles($('#namespace').val(), ++page) : listClusterRoles(++page);
             }
         });
 
         $('#last-page').click(function () {
             if (!$(this).hasClass('disabled')) {
-                namespaced ? list($('#namespace').val(), last) : list(last);
+                namespaced ? listClusterRoles($('#namespace').val(), last) : listClusterRoles(last);
             }
         });
     }

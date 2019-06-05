@@ -14,12 +14,12 @@ import tw.sanjiheart.utility.ErrorMsg;
 import tw.sanjiheart.utility.HttpException;
 
 @RestController
-public class NamespaceController {
+public class NamespaceController implements APIEndpoints {
 
   @Autowired
   private NamespaceService namespaceService;
 
-  @GetMapping(value = "/namespaces")
+  @GetMapping(value = NAMESPACES)
   public ResponseEntity<ResourceList<Namespace>> list(
       @RequestParam(value = "itemsPerPage", defaultValue = "10") int itemsPerPage,
       @RequestParam(value = "page", defaultValue = "1") int page) {

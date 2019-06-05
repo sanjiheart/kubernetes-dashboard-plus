@@ -12,6 +12,7 @@ import com.google.common.collect.Lists;
 import io.kubernetes.client.ApiException;
 import io.kubernetes.client.apis.RbacAuthorizationV1Api;
 import io.kubernetes.client.models.V1ClusterRole;
+import io.kubernetes.client.models.V1DeleteOptions;
 import tw.sanjiheart.model.ClusterRole;
 import tw.sanjiheart.model.ResourceList;
 import tw.sanjiheart.utility.ErrorMsg;
@@ -49,6 +50,15 @@ public class ClusterRoleService {
   public ClusterRole get(String name) {
     try {
       return new ClusterRole(api.readClusterRole(name, "false"));
+    } catch (ApiException e) {
+      e.printStackTrace();
+      throw new HttpException(ErrorMsg.SERVICE_UNAVAILABLE, e.getMessage());
+    }
+  }
+
+  public void delete(String name) {
+    try {
+      api.deleteClusterRole(name, new V1DeleteOptions(), "false", null, null, null, null);
     } catch (ApiException e) {
       e.printStackTrace();
       throw new HttpException(ErrorMsg.SERVICE_UNAVAILABLE, e.getMessage());

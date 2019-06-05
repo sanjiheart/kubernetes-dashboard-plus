@@ -4,7 +4,7 @@ $(function () {
 
     $('#namespace').change(function () {
         sessionStorage.setItem('namespace', $(this).val());
-        list($(this).val(), 1);
+        listServiceAccounts($(this).val(), 1);
     });
 
     listNamespaces();
@@ -20,11 +20,11 @@ $(function () {
                     $('#namespace-opt-grp').append('<option>' + ns.name + '</option>');
             });
             $('select').formSelect();
-            list($('#namespace').val(), 1);
+            listServiceAccounts($('#namespace').val(), 1);
         });
     }
 
-    function list(namespace, page) {
+    function listServiceAccounts(namespace, page) {
         var url = apiEndpoint + '/namespaces/' + namespace + '/serviceaccounts?itemsPerPage=' + itemsPerPage + '&page=' + page;
         $.ajax({
             url: url,
@@ -87,26 +87,26 @@ $(function () {
 
         $('#first-page').click(function () {
             if (!$(this).hasClass('disabled')) {
-                namespaced ? list($('#namespace').val(), 1) : list(1);
+                namespaced ? listServiceAccounts($('#namespace').val(), 1) : listServiceAccounts(1);
             }
         });
 
         $('#prev-page').click(function () {
             if (!$(this).hasClass('disabled')) {
-                namespaced ? list($('#namespace').val(), --page) : list(--page);
+                namespaced ? listServiceAccounts($('#namespace').val(), --page) : listServiceAccounts(--page);
             }
         });
 
         $('#next-page').click(function () {
             console.log('c');
             if (!$(this).hasClass('disabled')) {
-                namespaced ? list($('#namespace').val(), ++page) : list(++page);
+                namespaced ? listServiceAccounts($('#namespace').val(), ++page) : listServiceAccounts(++page);
             }
         });
 
         $('#last-page').click(function () {
             if (!$(this).hasClass('disabled')) {
-                namespaced ? list($('#namespace').val(), last) : list(last);
+                namespaced ? listServiceAccounts($('#namespace').val(), last) : listServiceAccounts(last);
             }
         });
     }

@@ -5,14 +5,9 @@ $(function () {
     } else {
         $('#name').text(sessionStorage.getItem('name'));
         setTitle(sessionStorage.getItem('name'));
+        listNamespaces();
     }
 
-    $('#namespace').change(function () {
-        sessionStorage.setItem('namespace', $(this).val());
-        window.location.href = 'roles.html';
-    });
-
-    listNamespaces();
     function listNamespaces() {
         var url = apiEndpoint + '/namespaces';
         $.ajax({
@@ -25,11 +20,11 @@ $(function () {
                     $('#namespace-opt-grp').append('<option>' + ns.name + '</option>');
             });
             $('select').formSelect();
-            get($('#namespace').val(), $('#name').text());
+            getRole($('#namespace').val(), $('#name').text());
         });
     }
 
-    function get(namespace, name) {
+    function getRole(namespace, name) {
         var url = apiEndpoint + '/namespaces/' + namespace + '/roles/' + name;
         console.log(url);
         $.ajax({
@@ -108,5 +103,32 @@ $(function () {
             }
         });
     }
+
+    function deleteRole(namespace, name) {
+        var url = apiEndpoint + '/namespaces/' + namespace + '/roles/' + name;
+        $.ajax({
+            url: url,
+            method: 'DELETE'
+        }).done(function () {
+            window.location.href = 'roles.html';
+        });
+    }
+
+    $('#delete-modal-trigger').click(function () {
+        $('#delete-modal-body').html('Are you sure you want to delete Role <em>'
+            + sessionStorage.getItem('name')
+            + '</em> in namespace <em>'
+            + sessionStorage.getItem('namespace')
+            + '</em>?');
+    });
+
+    $('#delete-btn').click(function () {
+        deleteRole(sessionStorage.getItem('namespace'), sessionStorage.getItem('name'));
+    });
+
+    $('#namespace').change(function () {
+        sessionStorage.setItem('namespace', $(this).val());
+        window.location.href = 'roles.html';
+    });
 
 });

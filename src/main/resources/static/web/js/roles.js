@@ -4,7 +4,7 @@ $(function () {
 
     $('#namespace').change(function () {
         sessionStorage.setItem('namespace', $(this).val());
-        list($(this).val(), 1);
+        listRoles($(this).val(), 1);
     });
 
     listNamespaces();
@@ -20,11 +20,11 @@ $(function () {
                     $('#namespace-opt-grp').append('<option>' + ns.name + '</option>');
             });
             $('select').formSelect();
-            list($('#namespace').val(), 1);
+            listRoles($('#namespace').val(), 1);
         });
     }
 
-    function list(namespace, page) {
+    function listRoles(namespace, page) {
         var url = apiEndpoint + '/namespaces/' + namespace + '/roles?itemsPerPage=' + itemsPerPage + '&page=' + page;
         $.ajax({
             url: url,
@@ -87,26 +87,26 @@ $(function () {
 
         $('#first-page').click(function () {
             if (!$(this).hasClass('disabled')) {
-                namespaced ? list($('#namespace').val(), 1) : list(1);
+                namespaced ? listRoles($('#namespace').val(), 1) : listRoles(1);
             }
         });
 
         $('#prev-page').click(function () {
             if (!$(this).hasClass('disabled')) {
-                namespaced ? list($('#namespace').val(), --page) : list(--page);
+                namespaced ? listRoles($('#namespace').val(), --page) : listRoles(--page);
             }
         });
 
         $('#next-page').click(function () {
             console.log('c');
             if (!$(this).hasClass('disabled')) {
-                namespaced ? list($('#namespace').val(), ++page) : list(++page);
+                namespaced ? listRoles($('#namespace').val(), ++page) : listRoles(++page);
             }
         });
 
         $('#last-page').click(function () {
             if (!$(this).hasClass('disabled')) {
-                namespaced ? list($('#namespace').val(), last) : list(last);
+                namespaced ? listRoles($('#namespace').val(), last) : listRoles(last);
             }
         });
     }

@@ -5,14 +5,9 @@ $(function () {
     } else {
         $('#name').text(sessionStorage.getItem('name'));
         setTitle(sessionStorage.getItem('name'));
+        listNamespaces();
     }
 
-    $('#namespace').change(function () {
-        sessionStorage.setItem('namespace', $(this).val());
-        window.location.href = 'serviceaccounts.html';
-    });
-
-    listNamespaces();
     function listNamespaces() {
         var url = apiEndpoint + '/namespaces';
         $.ajax({
@@ -25,13 +20,12 @@ $(function () {
                     $('#namespace-opt-grp').append('<option>' + ns.name + '</option>');
             });
             $('select').formSelect();
-            get($('#namespace').val(), $('#name').text());
+            getServiceAccount($('#namespace').val(), $('#name').text());
         });
     }
 
-    function get(namespace, name) {
+    function getServiceAccount(namespace, name) {
         var url = apiEndpoint + '/namespaces/' + namespace + '/serviceaccounts/' + name;
-        console.log(url);
         $.ajax({
             url: url,
             method: 'GET'
@@ -65,5 +59,32 @@ $(function () {
             });
         });
     }
+
+    function deleteServiceAccount(namespace, name) {
+        var url = apiEndpoint + '/namespaces/' + namespace + '/serviceaccounts/' + name;
+        $.ajax({
+            url: url,
+            method: 'DELETE'
+        }).done(function () {
+            window.location.href = 'serviceaccounts.html';
+        });
+    }
+
+    $('#delete-modal-trigger').click(function () {
+        $('#delete-modal-body').html('Are you sure you want to delete Service Account <em>'
+            + sessionStorage.getItem('name')
+            + '</em> in namespace <em>'
+            + sessionStorage.getItem('namespace')
+            + '</em>?');
+    });
+
+    $('#delete-btn').click(function () {
+        deleteServiceAccount(sessionStorage.getItem('namespace'), sessionStorage.getItem('name'));
+    });
+
+    $('#namespace').change(function () {
+        sessionStorage.setItem('namespace', $(this).val());
+        window.location.href = 'serviceaccounts.html';
+    });
 
 });

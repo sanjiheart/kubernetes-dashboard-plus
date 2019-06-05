@@ -29,23 +29,23 @@ $(function () {
     $('#cluster-name').keyup(function (e) {
         var code = e.keyCode || e.which;
         if (code !== 13) {
-            $('#saving').removeClass('disabled');
+            $('#save-btn').removeClass('disabled');
         }
     });
 
     $('#items-per-page').change(function () {
         $('#items-per-page-val').text($('#items-per-page').val());
-        $('#saving').removeClass('disabled');
+        $('#save-btn').removeClass('disabled');
     });
 
-    $('#saving').click(function () {
+    $('#save-btn').click(function () {
         if (!$(this).hasClass('disabled')) {
             $('#cluster-name').val().trim() !== '' ?
                 localStorage.setItem('title', $('#cluster-name').val()) :
                 localStorage.removeItem('title');
             localStorage.setItem('itemsPerPage', $('#items-per-page').val());
             setTitle('Settings');
-            $('#saving').addClass('disabled');
+            $('#save-btn').addClass('disabled');
         }
     });
 

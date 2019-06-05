@@ -26,18 +26,36 @@
         <div class="navbar-fixed" style="margin-top: -16px;">
             <nav class="second-nav">
                 <div class="nav-wrapper">
-                    <div class="col s12">
-                        <a class="breadcrumb">
-                            <i class="material-icons waves-effect"
-                                style="margin-top: -4px; margin-left: 22px; color: white;" id="menu-trigger">menu</i>
-                            <span style="margin-left: 16px; margin-right: -8px;">Cluster</span>
-                        </a>
-                        <a class="breadcrumb">
-                            <span style="margin-left: -8px; margin-right: -8px;">Service Accounts</span>
-                        </a>
-                        <a class="breadcrumb">
-                            <span style="margin-left: -8px;" id="name"></span>
-                        </a>
+                    <a class="breadcrumb">
+                        <i class="material-icons waves-effect"
+                            style="margin-top: -4px; margin-left: 22px; color: white;" id="menu-trigger">menu</i>
+                        <span style="margin-left: 16px; margin-right: -8px;">Cluster</span>
+                    </a>
+                    <a class="breadcrumb">
+                        <span style="margin-left: -8px; margin-right: -8px;">Service Accounts</span>
+                    </a>
+                    <a class="breadcrumb">
+                        <span style="margin-left: -8px;" id="name"></span>
+                    </a>
+                    <ul class="right">
+                        <li>
+                            <a href="#delete-modal" class="btn waves-effect waves-light z-depth-0 modal-trigger"
+                                style="background-color: #326de6;" id="delete-modal-trigger">
+                                <i class="material-icons left" style="margin-right: 4px;">delete</i>
+                                <span>DELETE</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="modal" id="delete-modal">
+                        <div class="modal-content black-text">
+                            <h4 style="font-size: 20px;">Delete a Role</h4>
+                            <div style="font-size: 16px;" id="delete-modal-body"></div>
+                        </div>
+                        <div class="modal-footer">
+                            <button class="modal-close waves-effect btn-flat" style="color: #326de6;">CANCEL</button>
+                            <button class="modal-close waves-effect btn-flat" style="color: #326de6;"
+                                id="delete-btn">DELETE</button>
+                        </div>
                     </div>
                 </div>
             </nav>

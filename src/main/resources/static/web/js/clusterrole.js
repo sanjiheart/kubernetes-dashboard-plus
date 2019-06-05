@@ -5,14 +5,9 @@ $(function () {
     } else {
         $('#name').text(sessionStorage.getItem('name'));
         setTitle(sessionStorage.getItem('name'));
+        listNamespaces();
     }
 
-    $('#namespace').change(function () {
-        sessionStorage.setItem('namespace', $(this).val());
-        window.location.href = 'clusterroles.html';
-    });
-
-    listNamespaces();
     function listNamespaces() {
         var url = apiEndpoint + '/namespaces';
         $.ajax({
@@ -25,11 +20,11 @@ $(function () {
                     $('#namespace-opt-grp').append('<option>' + ns.name + '</option>');
             });
             $('select').formSelect();
-            get($('#name').text());
+            getClusterRole($('#name').text());
         });
     }
 
-    function get(name) {
+    function getClusterRole(name) {
         var url = apiEndpoint + '/clusterroles/' + name;
         console.log(url);
         $.ajax({
@@ -103,5 +98,30 @@ $(function () {
             }
         });
     }
+
+    function deleteClusterRole(name) {
+        var url = apiEndpoint + '/clusterroles/' + name;
+        $.ajax({
+            url: url,
+            method: 'DELETE'
+        }).done(function () {
+            window.location.href = 'clusterroles.html';
+        });
+    }
+
+    $('#delete-modal-trigger').click(function () {
+        $('#delete-modal-body').html('Are you sure you want to delete Cluster Role <em>'
+            + sessionStorage.getItem('name')
+            + '</em>?');
+    });
+
+    $('#delete-btn').click(function () {
+        deleteClusterRole(sessionStorage.getItem('name'));
+    });
+
+    $('#namespace').change(function () {
+        sessionStorage.setItem('namespace', $(this).val());
+        window.location.href = 'clusterroles.html';
+    });
 
 });
