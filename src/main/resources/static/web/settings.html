@@ -30,10 +30,11 @@
                         <a class="breadcrumb">
                             <i class="material-icons waves-effect"
                                 style="margin-top: -4px; margin-left: 22px; color: white;" id="menu-trigger">menu</i>
-                            <span style="margin-left: 16px; margin-right: -8px;">Cluster</span>
+                            <span class="hide-on-med-and-down"
+                                style="margin-left: 16px; margin-right: -8px;">Cluster</span>
                         </a>
-                        <a class="breadcrumb">
-                            <span style="margin-left: -8px;">Service Accounts</span>
+                        <a class="breadcrumb hide-on-med-and-down">
+                            <span style="margin-left: -8px;" id="resource-type">Settings</span>
                         </a>
                     </div>
                 </div>
@@ -43,11 +44,9 @@
         <ul class="sidenav" id="menu">
             <li class="second-sidenav">
                 <ul>
-                    <li>
-                        <a class="collapsible-header waves-effect">Cluster</a>
+                    <li v-for="cObj in clusterObjList" :class="cObj.headerType">
+                        <a :class="cObj.class" :href="cObj.href" :style="cObj.style">{{cObj.text}}</a>
                     </li>
-                    <li class="sub-header"><a class="collapsible-header waves-effect" href="clusterroles.html"
-                            style="font-weight: normal;">Cluster Roles</a></li>
                     <div class="divider"></div>
                     <li>
                         <div class="row">
@@ -60,14 +59,13 @@
                             </div>
                         </div>
                     </li>
-                    <li><a class="collapsible-header waves-effect">Cluster</a></li>
-                    <li class="sub-header"><a class="collapsible-header waves-effect" href="roles.html"
-                            style="font-weight: normal;">Roles</a></li>
-                    <li class="sub-header"><a class="collapsible-header waves-effect" href="serviceaccounts.html"
-                            style="font-weight: normal;">Service Accounts</a></li>
+                    <li v-for="nCObj in namespacedClusterObjList" :class="nCObj.headerType">
+                        <a :class="nCObj.class" :href="nCObj.href" :style="nCObj.style">{{nCObj.text}}</a>
+                    </li>
                     <div class="divider"></div>
-                    <li class="active"><a class="collapsible-header waves-effect" href="settings.html">Settings</a></li>
-                    <li><a class="collapsible-header waves-effect" href="about.html">About</a></li>
+                    <li v-for="o in otherList">
+                        <a :class="o.class" :href="o.href">{{o.text}}</a>
+                    </li>
                 </ul>
             </li>
         </ul>

@@ -4,6 +4,7 @@ $(function () {
 
     $('#namespace').change(function () {
         sessionStorage.setItem('namespace', $(this).val());
+        listRoleBindings($(this).val(), 1);
     });
 
     listNamespaces();
@@ -19,30 +20,32 @@ $(function () {
                     $('#namespace-opt-grp').append('<option>' + ns.name + '</option>');
             });
             $('select').formSelect();
-            listClusterRoles(1);
+            listRoleBindings($('#namespace').val(), 1);
         });
     }
 
-    function listClusterRoles(page) {
-        var url = apiEndpoint + '/clusterroles?itemsPerPage=' + itemsPerPage + '&page=' + page;
+    function listRoleBindings(namespace, page) {
+        var url = apiEndpoint + '/namespaces/' + namespace + '/rolebindings?itemsPerPage=' + itemsPerPage + '&page=' + page;
         $.ajax({
             url: url,
             method: 'GET'
-        }).done(function (crResList) {
+        }).done(function (rResList) {
             $('#resources').empty();
             $('#pagination').hide();
-            if (crResList.total !== 0) {
+            if (rResList.total !== 0) {
                 $('#resources').append(
                     '<div class="row row-sm">'
-                    + '<div class="col s9 content-header">' + 'Name' + '</div>'
+                    + '<div class="col s6 content-header">' + 'Name' + '</div>'
+                    + '<div class="col s3 content-header">' + 'Namespace' + '</div>'
                     + '<div class="col s3 content-header">' + 'Age' + '</div>'
                     + '</div><div class="divider"></div>'
                 );
-                crResList.resources.forEach(function (cr) {
+                rResList.resources.forEach(function (r) {
                     $('#resources').append(
                         '<div class="row row-sm">'
-                        + '<div class="col s9 content-body"><a href="clusterrole.html" name="resource">' + cr.name + '</a></div>'
-                        + '<div class="col s3 content-body tooltipped" data-position="bottom" data-tooltip="' + cr.creationTime + '">' + $.timeago(cr.creationTime) + '</div>'
+                        + '<div class="col s6 content-body"><a href="rolebinding.html" name="resource">' + r.name + '</a></div>'
+                        + '<div class="col s3 content-body">' + r.namespace + '</div>'
+                        + '<div class="col s3 content-body tooltipped" data-position="bottom" data-tooltip="' + r.creationTime + '">' + $.timeago(r.creationTime) + '</div>'
                         + '</div><div class="divider"></div>'
                     );
                 });
@@ -53,12 +56,12 @@ $(function () {
                 $('.tooltipped').tooltip({
                     'enterDelay': 500
                 });
-                if (crResList.total > itemsPerPage) {
+                if (rResList.total > itemsPerPage) {
                     $('#pagination').show();
-                    initPagination(false, crResList.total, page);
+                    initPagination(true, rResList.total, page);
                 }
             } else {
-                showZeroState('Cluster Roles');
+                showZeroState();
             }
         });
     }
@@ -84,26 +87,26 @@ $(function () {
 
         $('#first-page').click(function () {
             if (!$(this).hasClass('disabled')) {
-                namespaced ? listClusterRoles($('#namespace').val(), 1) : listClusterRoles(1);
+                namespaced ? listRoleBindings($('#namespace').val(), 1) : listRoleBindings(1);
             }
         });
 
         $('#prev-page').click(function () {
             if (!$(this).hasClass('disabled')) {
-                namespaced ? listClusterRoles($('#namespace').val(), --page) : listClusterRoles(--page);
+                namespaced ? listRoleBindings($('#namespace').val(), --page) : listRoleBindings(--page);
             }
         });
 
         $('#next-page').click(function () {
             console.log('c');
             if (!$(this).hasClass('disabled')) {
-                namespaced ? listClusterRoles($('#namespace').val(), ++page) : listClusterRoles(++page);
+                namespaced ? listRoleBindings($('#namespace').val(), ++page) : listRoleBindings(++page);
             }
         });
 
         $('#last-page').click(function () {
             if (!$(this).hasClass('disabled')) {
-                namespaced ? listClusterRoles($('#namespace').val(), last) : listClusterRoles(last);
+                namespaced ? listRoleBindings($('#namespace').val(), last) : listRoleBindings(last);
             }
         });
     }

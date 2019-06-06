@@ -4,7 +4,7 @@ $(function () {
         window.location.href = 'serviceaccounts.html';
     } else {
         $('#name').text(sessionStorage.getItem('name'));
-        setTitle(sessionStorage.getItem('name'));
+        setTitle($('#name').text());
         listNamespaces();
     }
 

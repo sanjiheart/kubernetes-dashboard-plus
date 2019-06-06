@@ -1,7 +1,7 @@
 $(function () {
 
     if (sessionStorage.getItem('namespace') === null || sessionStorage.getItem('name') === null) {
-        window.location.href = 'roles.html';
+        window.location.href = 'rolebindings.html';
     } else {
         $('#name').text(sessionStorage.getItem('name'));
         setTitle($('#name').text());
@@ -25,20 +25,20 @@ $(function () {
     }
 
     function getRole(namespace, name) {
-        var url = apiEndpoint + '/namespaces/' + namespace + '/roles/' + name;
+        var url = apiEndpoint + '/namespaces/' + namespace + '/rolebindings/' + name;
         console.log(url);
         $.ajax({
             url: url,
             method: 'GET'
-        }).done(function (r) {
+        }).done(function (rb) {
             $('#detail').append(
                 '<div class="row row-xs">'
-                + '<div class="col s2 content-body content-title">Name:</div>' + '<div class="col s10 content-body" title="Name">' + r.name + '</div>'
+                + '<div class="col s2 content-body content-title">Name:</div>' + '<div class="col s10 content-body" title="Name">' + rb.name + '</div>'
                 + '</div>'
             );
             $('#detail').append(
                 '<div class="row row-xs">'
-                + '<div class="col s2 content-body content-title">Namespace:</div>' + '<div class="col s10 content-body" title="Namespace">' + r.namespace + '</div>'
+                + '<div class="col s2 content-body content-title">Namespace:</div>' + '<div class="col s10 content-body" title="Namespace">' + rb.namespace + '</div>'
                 + '</div>'
             );
             $('#detail').append(
@@ -46,10 +46,10 @@ $(function () {
                 + '<div class="col s2 content-body content-title">Labels:</div>' + '<div class="col s10 content-body" id="labels"></div>'
                 + '</div>'
             );
-            if (r.labels === null) {
+            if (rb.labels === null) {
                 $('#labels').append('<span title="Labels">-</span>');
             } else {
-                $.each(r.labels, function (k, v) {
+                $.each(rb.labels, function (k, v) {
                     $('#labels').append('<span class="content-grey" title="Labels">' + k + ': ' + v + '</span>');
                 });
             }
@@ -58,64 +58,66 @@ $(function () {
                 + '<div class="col s2 content-body content-title">Annotations:</div>' + '<div class="col s10 content-body" id="annotations"></div>'
                 + '</div>'
             );
-            if (r.annotations === null) {
+            if (rb.annotations === null) {
                 $('#annotations').append('<span title="Annotations">-</span>');
             } else {
-                $.each(r.annotations, function (k, v) {
+                $.each(rb.annotations, function (k, v) {
                     $('#annotations').append('<span class="content-grey" title="Annotations">' + k + ': ' + v + '</span>');
                 });
             }
             $('#detail').append(
                 '<div class="row row-xs">'
-                + '<div class="col s2 content-body content-title">Creation Time:</div>' + '<div class="col s10 content-body" title="Creation Time">' + r.creationTime + '</div>'
+                + '<div class="col s2 content-body content-title">Creation Time:</div>' + '<div class="col s10 content-body" title="Creation Time">' + rb.creationTime + '</div>'
                 + '</div>'
             );
-            if (r.rules.length !== 0) {
-                $('#rules').append(
+            $('#subjects').append(
+                '<div class="row row-sm">'
+                + '<div class="col s3 content-header">' + 'API Group' + '</div>'
+                + '<div class="col s2 content-header">' + 'Kind' + '</div>'
+                + '<div class="col s4 content-header">' + 'Name' + '</div>'
+                + '<div class="col s3 content-header">' + 'Namespace' + '</div>'
+                + '</div><div class="divider"></div>'
+            );
+            rb.subjects.forEach(function (s) {
+                $('#subjects').append(
                     '<div class="row row-sm">'
-                    + '<div class="col s2 content-header">' + 'API Groups' + '</div>'
-                    + '<div class="col s5 content-header">' + 'Resources' + '</div>'
-                    + '<div class="col s5 content-header">' + 'Verbs' + '</div>'
+                    + '<div class="col s3">' + s.apiGroup + '</a></div>'
+                    + '<div class="col s2">' + s.kind + '</a></div>'
+                    + '<div class="col s4">' + s.name + '</a></div>'
+                    + '<div class="col s3">' + s.namespace + '</a></div>'
                     + '</div><div class="divider"></div>'
                 );
-                r.rules.forEach(function (rule) {
-                    var apiGroups = '';
-                    rule.apiGroups.forEach(function (a) {
-                        readableA = a === '' ? '&lt;empty string&gt;' : a;
-                        apiGroups += '<div class="chip teal lighten-4" title="' + a + '">' + readableA + '</div>';
-                    });
-                    var resources = '';
-                    rule.resources.forEach(function (res) {
-                        resources += '<div class="chip teal lighten-4" title="' + res + '">' + res + '</div>';
-                    });
-                    var verbs = '';
-                    rule.verbs.forEach(function (v) {
-                        verbs += '<div class="chip teal lighten-4" title="' + v + '">' + v + '</div>';
-                    });
-                    $('#rules').append(
-                        '<div class="row row-sm valign-wrapper">'
-                        + '<div class="col s2 content-body">' + apiGroups + '</div>'
-                        + '<div class="col s5 content-body">' + resources + '</div>'
-                        + '<div class="col s5 content-body">' + verbs + '</div>'
-                        + '</div><div class="divider"></div>'
-                    )
-                });
-            }
+            });
+            $('#roleRef').append(
+                '<div class="row row-xs">'
+                + '<div class="col s2 content-body content-title">API Group:</div>' + '<div class="col s10 content-body" title="Name">' + rb.roleRef.apiGroup + '</div>'
+                + '</div>'
+            );
+            $('#roleRef').append(
+                '<div class="row row-xs">'
+                + '<div class="col s2 content-body content-title">Kind:</div>' + '<div class="col s10 content-body" title="Name">' + rb.roleRef.kind + '</div>'
+                + '</div>'
+            );
+            $('#roleRef').append(
+                '<div class="row row-xs">'
+                + '<div class="col s2 content-body content-title">Name:</div>' + '<div class="col s10 content-body" title="Name">' + rb.roleRef.name + '</div>'
+                + '</div>'
+            );
         });
     }
 
     function deleteRole(namespace, name) {
-        var url = apiEndpoint + '/namespaces/' + namespace + '/roles/' + name;
+        var url = apiEndpoint + '/namespaces/' + namespace + '/rolebindings/' + name;
         $.ajax({
             url: url,
             method: 'DELETE'
         }).done(function () {
-            window.location.href = 'roles.html';
+            window.location.href = 'rolebindings.html';
         });
     }
 
     $('#delete-modal-trigger').click(function () {
-        $('#delete-modal-body').html('Are you sure you want to delete Role <em>'
+        $('#delete-modal-body').html('Are you sure you want to delete Role Binding<em>'
             + sessionStorage.getItem('name')
             + '</em> in namespace <em>'
             + sessionStorage.getItem('namespace')
@@ -128,7 +130,7 @@ $(function () {
 
     $('#namespace').change(function () {
         sessionStorage.setItem('namespace', $(this).val());
-        window.location.href = 'roles.html';
+        window.location.href = 'rolebindings.html';
     });
 
 });

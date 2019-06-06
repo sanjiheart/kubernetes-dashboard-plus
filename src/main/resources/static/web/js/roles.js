@@ -1,6 +1,6 @@
 $(function () {
 
-    setTitle('Roles');
+    setTitle($('#resource-type').text());
 
     $('#namespace').change(function () {
         sessionStorage.setItem('namespace', $(this).val());

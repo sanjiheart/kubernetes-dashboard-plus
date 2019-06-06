@@ -32,7 +32,9 @@
                         <span class="hide-on-med-and-down" style="margin-left: 16px; margin-right: -8px;">Cluster</span>
                     </a>
                     <a class="breadcrumb hide-on-med-and-down">
-                        <span style="margin-left: -8px; margin-right: -8px;" id="resource-type">Service Accounts</span>
+                        <span style="margin-left: -8px; margin-right: -8px;" id="resource-type">
+                            Cluster Role Bindings
+                        </span>
                     </a>
                     <a class="breadcrumb hide-on-med-and-down" style="color: white;">
                         <span style="margin-left: -8px;" id="name"></span>
@@ -48,7 +50,7 @@
                     </ul>
                     <div class="modal" id="delete-modal">
                         <div class="modal-content black-text">
-                            <h4 style="font-size: 20px;">Delete a Service Account</h4>
+                            <h4 style="font-size: 20px;">Delete a Cluster Role</h4>
                             <div style="font-size: 16px;" id="delete-modal-body"></div>
                         </div>
                         <div class="modal-footer">
@@ -99,9 +101,14 @@
                     <div style="padding-top: 4px; padding-bottom: 4px;" id="detail"></div>
                 </div>
                 <div class="card">
-                    <div class="card-title-sm">Secret</div>
+                    <div class="card-title-sm">Subjects</div>
                     <div class="divider"></div>
-                    <div id="secrets"></div>
+                    <div id="subjects"></div>
+                </div>
+                <div class="card">
+                    <div class="card-title-sm">Role Reference</div>
+                    <div class="divider"></div>
+                    <div style="padding-top: 4px; padding-bottom: 4px;" id="roleRef"></div>
                 </div>
             </div>
         </div>
@@ -112,7 +119,7 @@
     <script src="node_modules/timeago/jquery.timeago.js"></script>
     <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script src="js/global.js"></script>
-    <script src="js/serviceaccount.js"></script>
+    <script src="js/clusterrolebinding.js"></script>
 </body>
 
 </html>

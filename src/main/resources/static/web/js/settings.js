@@ -1,6 +1,6 @@
 $(function () {
 
-    setTitle('Settings');
+    setTitle($('#resource-type').text());
 
     $('#namespace').change(function () {
         sessionStorage.setItem('namespace', $(this).val());
@@ -22,7 +22,7 @@ $(function () {
         });
     }
 
-    $('#cluster-name').val(localStorage.getItem('title'));
+    $('#cluster-name').val(localStorage.getItem('clusterName'));
     $('#items-per-page').val(itemsPerPage);
     $('#items-per-page-val').text(itemsPerPage);
 
@@ -41,10 +41,10 @@ $(function () {
     $('#save-btn').click(function () {
         if (!$(this).hasClass('disabled')) {
             $('#cluster-name').val().trim() !== '' ?
-                localStorage.setItem('title', $('#cluster-name').val()) :
-                localStorage.removeItem('title');
+                localStorage.setItem('clusterName', $('#cluster-name').val()) :
+                localStorage.removeItem('clusterName');
             localStorage.setItem('itemsPerPage', $('#items-per-page').val());
-            setTitle('Settings');
+            setTitle();
             $('#save-btn').addClass('disabled');
         }
     });

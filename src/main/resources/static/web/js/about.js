@@ -1,6 +1,6 @@
 $(function () {
 
-    setTitle('About');
+    setTitle($('#resource-type').text());
 
     $('#namespace').change(function () {
         sessionStorage.setItem('namespace', $(this).val());

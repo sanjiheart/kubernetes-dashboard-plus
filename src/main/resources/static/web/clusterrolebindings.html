@@ -26,36 +26,16 @@
         <div class="navbar-fixed" style="margin-top: -16px;">
             <nav class="second-nav">
                 <div class="nav-wrapper">
-                    <a class="breadcrumb">
-                        <i class="material-icons waves-effect"
-                            style="margin-top: -4px; margin-left: 22px; color: white;" id="menu-trigger">menu</i>
-                        <span class="hide-on-med-and-down" style="margin-left: 16px; margin-right: -8px;">Cluster</span>
-                    </a>
-                    <a class="breadcrumb hide-on-med-and-down">
-                        <span style="margin-left: -8px; margin-right: -8px;" id="resource-type">Service Accounts</span>
-                    </a>
-                    <a class="breadcrumb hide-on-med-and-down" style="color: white;">
-                        <span style="margin-left: -8px;" id="name"></span>
-                    </a>
-                    <ul class="right">
-                        <li>
-                            <a href="#delete-modal" class="btn waves-effect waves-light z-depth-0 modal-trigger"
-                                style="background-color: #326de6;" id="delete-modal-trigger">
-                                <i class="material-icons left" style="margin-right: 4px;">delete</i>
-                                <span>DELETE</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <div class="modal" id="delete-modal">
-                        <div class="modal-content black-text">
-                            <h4 style="font-size: 20px;">Delete a Service Account</h4>
-                            <div style="font-size: 16px;" id="delete-modal-body"></div>
-                        </div>
-                        <div class="modal-footer">
-                            <button class="modal-close waves-effect btn-flat" style="color: #326de6;">CANCEL</button>
-                            <button class="modal-close waves-effect btn-flat" style="color: #326de6;"
-                                id="delete-btn">DELETE</button>
-                        </div>
+                    <div class="col s12">
+                        <a class="breadcrumb">
+                            <i class="material-icons waves-effect"
+                                style="margin-top: -4px; margin-left: 22px; color: white;" id="menu-trigger">menu</i>
+                            <span class="hide-on-med-and-down"
+                                style="margin-left: 16px; margin-right: -8px;">Cluster</span>
+                        </a>
+                        <a class="breadcrumb hide-on-med-and-down">
+                            <span style="margin-left: -8px;" id="resource-type">Cluster Role Bindings</span>
+                        </a>
                     </div>
                 </div>
             </nav>
@@ -94,14 +74,22 @@
         <div class="row">
             <div class="col s12">
                 <div class="card">
-                    <div class="card-title-sm">Details</div>
+                    <div class="card-title-sm">Cluster Role Bindings</div>
                     <div class="divider"></div>
-                    <div style="padding-top: 4px; padding-bottom: 4px;" id="detail"></div>
-                </div>
-                <div class="card">
-                    <div class="card-title-sm">Secret</div>
-                    <div class="divider"></div>
-                    <div id="secrets"></div>
+                    <div id="resources"></div>
+                    <div class="right-align" style="display: none;" id="pagination">
+                        <div class="row row-sm">
+                            <div class="col s12">
+                                <ul class="pagination">
+                                    <li class="waves-effect" v-for="behavior in behaviorList" :id="behavior.id">
+                                        <a href="#">
+                                            <i class="material-icons" style="font-size: 24px;">{{ behavior.text }}</i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -112,7 +100,7 @@
     <script src="node_modules/timeago/jquery.timeago.js"></script>
     <script src="node_modules/materialize-css/dist/js/materialize.min.js"></script>
     <script src="js/global.js"></script>
-    <script src="js/serviceaccount.js"></script>
+    <script src="js/clusterrolebindings.js"></script>
 </body>
 
 </html>
