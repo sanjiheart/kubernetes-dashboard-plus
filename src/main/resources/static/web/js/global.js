@@ -1,6 +1,6 @@
 var version = 'v0.1.0';
 
-var title = '<subtitle> - Kubernetes Dashboard Plus';
+var title = '<subtitle> - Kubernetes Dashboard Extra';
 
 var itemsPerPage = localStorage.getItem('itemsPerPage') === null ? 10 : localStorage.getItem('itemsPerPage');
 

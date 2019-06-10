@@ -3,4 +3,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = 'kubernetes-dashboard-plus'
+rootProject.name = 'kubernetes-dashboard-extra'

@@ -112,7 +112,7 @@ $(function () {
     }
 
     $('#delete-modal-trigger').click(function () {
-        $('#delete-modal-body').html('Are you sure you want to delete Cluster Role Binding<em>'
+        $('#delete-modal-body').html('Are you sure you want to delete Cluster Role Binding <em>'
             + sessionStorage.getItem('name')
             + '</em>?');
     });
